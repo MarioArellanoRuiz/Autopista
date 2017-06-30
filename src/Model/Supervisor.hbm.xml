@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2017 6:13:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Supervisor" table="supervisor" catalog="db_autopista" optimistic-lock="version">
+        <id name="idNumeroEmpleado" type="int">
+            <column name="idNumeroEmpleado" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" />
+        </property>
+        <property name="fechaIngreso" type="date">
+            <column name="FechaIngreso" length="10" />
+        </property>
+        <set name="eventos" table="evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Supervisor_idNumeroEmpleado" not-null="true" />
+            </key>
+            <one-to-many class="Model.Evento" />
+        </set>
+    </class>
+</hibernate-mapping>

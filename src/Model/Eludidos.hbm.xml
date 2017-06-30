@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2017 6:13:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Eludidos" table="eludidos" catalog="db_autopista" optimistic-lock="version">
+        <composite-id name="id" class="Model.EludidosId">
+            <key-property name="idEludidos" type="int">
+                <column name="idEludidos" />
+            </key-property>
+            <key-property name="eventoIdFolioSistema" type="int">
+                <column name="Evento_idFolioSistema" />
+            </key-property>
+            <key-property name="eventoSupervisorIdNumeroEmpleado" type="int">
+                <column name="Evento_Supervisor_idNumeroEmpleado" />
+            </key-property>
+            <key-property name="eventoCobradorIdNumeroEmpleado" type="int">
+                <column name="Evento_Cobrador_idNumeroEmpleado" />
+            </key-property>
+            <key-property name="eventoPeriodosTarifasIdPeriodoTarifa" type="int">
+                <column name="Evento_PeriodosTarifas_idPeriodoTarifa" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="evento" class="Model.Evento" update="false" insert="false" fetch="select">
+            <column name="Evento_idFolioSistema" not-null="true" />
+            <column name="Evento_Supervisor_idNumeroEmpleado" not-null="true" />
+            <column name="Evento_Cobrador_idNumeroEmpleado" not-null="true" />
+            <column name="Evento_PeriodosTarifas_idPeriodoTarifa" not-null="true" />
+        </many-to-one>
+        <property name="formaEludir" type="string">
+            <column name="FormaEludir" length="45" />
+        </property>
+        <property name="efectivoArrojado" type="java.lang.Integer">
+            <column name="EfectivoArrojado" />
+        </property>
+    </class>
+</hibernate-mapping>

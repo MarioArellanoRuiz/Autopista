@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2017 6:13:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Evento" table="evento" catalog="db_autopista" optimistic-lock="version">
+        <composite-id name="id" class="Model.EventoId">
+            <key-property name="idFolioSistema" type="int">
+                <column name="idFolioSistema" />
+            </key-property>
+            <key-property name="supervisorIdNumeroEmpleado" type="int">
+                <column name="Supervisor_idNumeroEmpleado" />
+            </key-property>
+            <key-property name="cobradorIdNumeroEmpleado" type="int">
+                <column name="Cobrador_idNumeroEmpleado" />
+            </key-property>
+            <key-property name="periodosTarifasIdPeriodoTarifa" type="int">
+                <column name="PeriodosTarifas_idPeriodoTarifa" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="cobrador" class="Model.Cobrador" update="false" insert="false" fetch="select">
+            <column name="Cobrador_idNumeroEmpleado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="periodostarifas" class="Model.Periodostarifas" update="false" insert="false" fetch="select">
+            <column name="PeriodosTarifas_idPeriodoTarifa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="supervisor" class="Model.Supervisor" update="false" insert="false" fetch="select">
+            <column name="Supervisor_idNumeroEmpleado" not-null="true" />
+        </many-to-one>
+        <property name="plazaCobro" type="string">
+            <column name="PlazaCobro" length="45" />
+        </property>
+        <property name="fechaOperativa" type="date">
+            <column name="FechaOperativa" length="10" />
+        </property>
+        <property name="fechaHoraEvento" type="timestamp">
+            <column name="FechaHoraEvento" length="19" />
+        </property>
+        <property name="turno" type="string">
+            <column name="Turno" length="45" />
+        </property>
+        <property name="via" type="string">
+            <column name="Via" length="45" />
+        </property>
+        <property name="ticket" type="java.lang.Integer">
+            <column name="Ticket" />
+        </property>
+        <property name="modoPago" type="string">
+            <column name="ModoPago" length="45" />
+        </property>
+        <property name="modoPaso" type="string">
+            <column name="ModoPaso" length="45" />
+        </property>
+        <property name="modoPasoVerificado" type="string">
+            <column name="ModoPasoVerificado" length="45" />
+        </property>
+        <property name="tarjetaTelepeaje" type="string">
+            <column name="TarjetaTelepeaje" length="45" />
+        </property>
+        <property name="claseTabulada" type="string">
+            <column name="ClaseTabulada" length="45" />
+        </property>
+        <property name="claseDetectada" type="string">
+            <column name="ClaseDetectada" length="45" />
+        </property>
+        <property name="claseVerificada" type="string">
+            <column name="ClaseVerificada" length="4" />
+        </property>
+        <property name="importe" type="java.lang.Integer">
+            <column name="Importe" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="Observaciones" length="100" />
+        </property>
+        <set name="eludidoses" table="eludidos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Evento_idFolioSistema" not-null="true" />
+                <column name="Evento_Supervisor_idNumeroEmpleado" not-null="true" />
+                <column name="Evento_Cobrador_idNumeroEmpleado" not-null="true" />
+                <column name="Evento_PeriodosTarifas_idPeriodoTarifa" not-null="true" />
+            </key>
+            <one-to-many class="Model.Eludidos" />
+        </set>
+    </class>
+</hibernate-mapping>

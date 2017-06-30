@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2017 6:13:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Periodostarifas" table="periodostarifas" catalog="db_autopista" optimistic-lock="version">
+        <id name="idPeriodoTarifa" type="int">
+            <column name="idPeriodoTarifa" />
+            <generator class="assigned" />
+        </id>
+        <property name="fechaInicio" type="date">
+            <column name="FechaInicio" length="10" />
+        </property>
+        <property name="fechaFinal" type="date">
+            <column name="FechaFinal" length="10" />
+        </property>
+        <property name="m" type="java.lang.Integer">
+            <column name="M" />
+        </property>
+        <property name="a" type="java.lang.Integer">
+            <column name="A" />
+        </property>
+        <property name="ar1" type="java.lang.Integer">
+            <column name="AR1" />
+        </property>
+        <property name="ar2" type="java.lang.Integer">
+            <column name="AR2" />
+        </property>
+        <property name="ar3" type="java.lang.Integer">
+            <column name="AR3" />
+        </property>
+        <property name="b2" type="java.lang.Integer">
+            <column name="B2" />
+        </property>
+        <property name="b3" type="java.lang.Integer">
+            <column name="B3" />
+        </property>
+        <property name="b4" type="java.lang.Integer">
+            <column name="B4" />
+        </property>
+        <property name="c2" type="java.lang.Integer">
+            <column name="C2" />
+        </property>
+        <property name="c3" type="java.lang.Integer">
+            <column name="C3" />
+        </property>
+        <property name="c4" type="java.lang.Integer">
+            <column name="C4" />
+        </property>
+        <property name="c5" type="java.lang.Integer">
+            <column name="C5" />
+        </property>
+        <property name="c6" type="java.lang.Integer">
+            <column name="C6" />
+        </property>
+        <property name="c7" type="java.lang.Integer">
+            <column name="C7" />
+        </property>
+        <property name="c8" type="java.lang.Integer">
+            <column name="C8" />
+        </property>
+        <property name="c9" type="java.lang.Integer">
+            <column name="C9" />
+        </property>
+        <property name="eel" type="java.lang.Integer">
+            <column name="EEL" />
+        </property>
+        <property name="eep" type="java.lang.Integer">
+            <column name="EEP" />
+        </property>
+        <set name="eventos" table="evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PeriodosTarifas_idPeriodoTarifa" not-null="true" />
+            </key>
+            <one-to-many class="Model.Evento" />
+        </set>
+    </class>
+</hibernate-mapping>

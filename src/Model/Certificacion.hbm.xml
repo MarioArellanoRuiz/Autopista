@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2017 6:13:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Certificacion" table="certificacion" catalog="db_autopista" optimistic-lock="version">
+        <composite-id name="id" class="Model.CertificacionId">
+            <key-property name="idCertificacion" type="int">
+                <column name="idCertificacion" />
+            </key-property>
+            <key-property name="cobradorIdNumeroEmpleado" type="int">
+                <column name="Cobrador_idNumeroEmpleado" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="cobrador" class="Model.Cobrador" update="false" insert="false" fetch="select">
+            <column name="Cobrador_idNumeroEmpleado" not-null="true" />
+        </many-to-one>
+        <property name="faltante" type="java.lang.Integer">
+            <column name="Faltante" />
+        </property>
+        <property name="sobrante" type="java.lang.Integer">
+            <column name="Sobrante" />
+        </property>
+        <property name="discrepancias" type="java.lang.Integer">
+            <column name="Discrepancias" />
+        </property>
+        <property name="fechaOperativa" type="date">
+            <column name="FechaOperativa" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
